@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>JamSync · listen together</title>
   <style>
     /* ----- reset & base ----- */
@@ -25,10 +25,11 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
+      width: 100%;
     }
 
     section {
-      padding: 5rem 0;
+      padding: 4rem 0;
     }
 
     /* ----- typography ----- */
@@ -38,20 +39,20 @@
     }
 
     h1 {
-      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      font-size: clamp(2.2rem, 6vw, 4rem);
       line-height: 1.1;
     }
 
     h2 {
-      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
       margin-bottom: 1rem;
     }
 
     .subheading {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       color: #b0b0c0;
       max-width: 600px;
-      margin: 1.5rem 0 2rem;
+      margin: 1.2rem 0 1.8rem;
     }
 
     /* ----- buttons ----- */
@@ -63,10 +64,10 @@
 
     .btn {
       display: inline-block;
-      padding: 0.9rem 2.2rem;
+      padding: 0.8rem 2rem;
       border-radius: 60px;
       font-weight: 550;
-      font-size: 1.1rem;
+      font-size: 1rem;
       text-decoration: none;
       transition: all 0.25s ease;
       border: 1px solid transparent;
@@ -108,6 +109,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      padding: 0.7rem 1.8rem;
     }
 
     .btn-download:hover {
@@ -120,8 +122,8 @@
     /* ----- cards & glass effect ----- */
     .glass-card {
       background: #111118;
-      border-radius: 32px;
-      padding: 2rem 1.5rem;
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem;
       border: 1px solid rgba(200, 245, 60, 0.1);
       box-shadow: 0 20px 35px -8px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.02) inset;
       transition: all 0.3s;
@@ -138,18 +140,18 @@
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
     .feature-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 2.2rem;
+      margin-bottom: 0.8rem;
       filter: drop-shadow(0 0 8px #c8f53c66);
     }
 
     .feature-title {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 600;
       margin-bottom: 0.4rem;
       color: #ffffff;
@@ -157,7 +159,7 @@
 
     .feature-desc {
       color: #6b6b80;
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
 
     /* steps */
@@ -165,16 +167,16 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
       margin-top: 2rem;
     }
 
     .step-item {
-      flex: 1 1 200px;
+      flex: 1 1 180px;
       text-align: center;
       background: #111118;
-      border-radius: 40px;
-      padding: 2.2rem 1.2rem;
+      border-radius: 32px;
+      padding: 2rem 1rem;
       border: 1px solid rgba(200, 245, 60, 0.08);
       transition: all 0.2s;
     }
@@ -187,22 +189,22 @@
     .step-number {
       background: #c8f53c;
       color: #0a0a0f;
-      width: 48px;
-      height: 48px;
-      font-size: 1.6rem;
+      width: 42px;
+      height: 42px;
+      font-size: 1.4rem;
       font-weight: bold;
       border-radius: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1.2rem;
+      margin: 0 auto 1rem;
       box-shadow: 0 0 20px #c8f53c;
     }
 
-    /* Hero Slideshow */
+    /* Hero Slideshow - Fixed zoom issue */
     .hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -226,9 +228,6 @@
       height: 100%;
       opacity: 0;
       animation: slideShow 15s infinite;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
     }
 
     .slide::before {
@@ -238,7 +237,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, #0a0a0f 0%, rgba(10,10,15,0.7) 50%, #0a0a0f 100%);
+      background: linear-gradient(90deg, #0a0a0f 0%, rgba(10,10,15,0.6) 30%, rgba(10,10,15,0.6) 70%, #0a0a0f 100%);
       z-index: 2;
     }
 
@@ -253,38 +252,49 @@
       z-index: 2;
     }
 
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+    }
+
     .slide:nth-child(1) {
       animation-delay: 0s;
-      background-image: url('adv2.png');
     }
     .slide:nth-child(2) {
       animation-delay: 5s;
-      background-image: url('adv.png');
     }
     .slide:nth-child(3) {
       animation-delay: 10s;
-      background-image: url('adv1.png');
     }
 
     @keyframes slideShow {
-      0% { opacity: 0; transform: scale(1.1); }
-      5% { opacity: 1; transform: scale(1); }
-      30% { opacity: 1; transform: scale(1); }
-      35% { opacity: 0; transform: scale(0.95); }
-      100% { opacity: 0; transform: scale(1.1); }
+      0% { opacity: 0; }
+      5% { opacity: 1; }
+      30% { opacity: 1; }
+      35% { opacity: 0; }
+      100% { opacity: 0; }
     }
 
     .hero-content {
       position: relative;
       z-index: 10;
-      max-width: 800px;
+      max-width: 700px;
       animation: fadeInUp 1s ease-out;
+      background: rgba(10,10,15,0.7);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 32px;
+      border: 1px solid rgba(200, 245, 60, 0.15);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
     }
 
     @keyframes fadeInUp {
       from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
       }
       to {
         opacity: 1;
@@ -305,8 +315,8 @@
     /* showcase */
     .showcase-card {
       background: #111118;
-      border-radius: 40px;
-      padding: 3rem 2rem;
+      border-radius: 32px;
+      padding: 2rem;
       border: 1px solid rgba(200, 245, 60, 0.15);
       box-shadow: 0 30px 40px -20px black;
       transition: all 0.4s;
@@ -322,7 +332,9 @@
 
     .preview-image {
       width: 100%;
-      border-radius: 24px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 20px;
       border: 2px solid rgba(200, 245, 60, 0.2);
       transition: all 0.3s;
       display: block;
@@ -336,22 +348,22 @@
 
     .image-credit {
       color: #6b6b80;
-      margin-top: 1.2rem;
+      margin-top: 1rem;
       font-size: 0.9rem;
     }
 
     /* download bar */
     .download-bar {
       background: #111118;
-      border-radius: 100px;
-      padding: 0.8rem 1.5rem 0.8rem 2rem;
+      border-radius: 60px;
+      padding: 0.6rem 1.2rem 0.6rem 1.8rem;
       border: 1px solid rgba(200, 245, 60, 0.2);
       display: inline-flex;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1.2rem;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
       backdrop-filter: blur(8px);
     }
 
@@ -359,12 +371,13 @@
       color: #c8f53c;
       font-weight: 500;
       letter-spacing: 0.3px;
+      font-size: 0.95rem;
     }
 
     .download-link {
       color: white;
       text-decoration: none;
-      padding: 0.5rem 1.5rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 60px;
       background: rgba(200, 245, 60, 0.1);
       border: 1px solid #c8f53c;
@@ -372,6 +385,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      font-size: 0.95rem;
     }
 
     .download-link:hover {
@@ -387,15 +401,15 @@
     }
 
     .cta-title {
-      font-size: clamp(2.2rem, 5vw, 3.5rem);
-      margin-bottom: 2rem;
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 1.5rem;
     }
 
     .btn-cta {
       background: #c8f53c;
       color: #0a0a0f;
-      padding: 1.2rem 3.5rem;
-      font-size: 1.4rem;
+      padding: 1rem 3rem;
+      font-size: 1.3rem;
       border-radius: 80px;
       font-weight: 600;
       border: none;
@@ -411,46 +425,58 @@
     /* footer */
     footer {
       border-top: 1px solid rgba(200, 245, 60, 0.08);
-      padding: 2.5rem 0;
+      padding: 2rem 0;
       color: #6b6b80;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       text-align: center;
     }
 
     .footer-inner {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.3rem;
     }
 
     .footer-inner span:last-child {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       opacity: 0.7;
     }
 
     /* responsive */
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       section { padding: 3rem 0; }
       .btn-group { justify-content: center; }
       h1 { text-align: center; }
       .subheading { text-align: center; margin-left: auto; margin-right: auto; }
-      .download-bar { border-radius: 40px; padding: 1.2rem; }
-      .hero { min-height: 90vh; }
+      .hero-content { padding: 1.5rem; margin: 0 1rem; }
+      .download-bar { border-radius: 40px; padding: 0.8rem 1.2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { min-height: 80vh; }
+      .hero-content { padding: 1.2rem; }
+      h1 { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 1️⃣ HERO SECTION WITH SLIDESHOW -->
+  <!-- 1️⃣ HERO SECTION WITH SLIDESHOW - FIXED ZOOM ISSUE -->
   <section class="hero">
-    <!-- Slideshow Background -->
+    <!-- Slideshow Background with proper image display -->
     <div class="slideshow-container">
-      <div class="slide"></div>
-      <div class="slide"></div>
-      <div class="slide"></div>
+      <div class="slide">
+        <img src="adv2.png" alt="" style="width: 100%; height: 100%; object-fit: contain; background: #0a0a0f;">
+      </div>
+      <div class="slide">
+        <img src="adv.png" alt="" style="width: 100%; height: 100%; object-fit: contain; background: #0a0a0f;">
+      </div>
+      <div class="slide">
+        <img src="adv1.png" alt="" style="width: 100%; height: 100%; object-fit: contain; background: #0a0a0f;">
+      </div>
     </div>
     
-    <!-- Hero Content -->
+    <!-- Hero Content with semi-transparent background for better readability -->
     <div class="container" style="position: relative; z-index: 10; width: 100%;">
       <div class="hero-content">
         <h1>Listen Together.<br>Perfectly in Sync.</h1>
@@ -464,22 +490,22 @@
         </div>
         
         <!-- Download APK button with floating animation -->
-        <div style="margin-top: 2.5rem;" class="floating-download">
+        <div style="margin-top: 2rem;" class="floating-download">
           <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" 
              class="btn btn-download"
              download>
             <span>📱</span> Download Android App
           </a>
-          <span style="display: block; color: #6b6b80; font-size: 0.9rem; margin-top: 0.8rem;">version 2.1.0 · 18 MB</span>
+          <span style="display: block; color: #6b6b80; font-size: 0.8rem; margin-top: 0.5rem;">version 2.1.0 · 18 MB</span>
         </div>
       </div>
     </div>
     
     <!-- Slide indicators -->
-    <div style="position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.8rem; z-index: 20;">
-      <div style="width: 10px; height: 10px; border-radius: 50%; background: #c8f53c; opacity: 0.5; animation: indicatorPulse 15s infinite;"></div>
-      <div style="width: 10px; height: 10px; border-radius: 50%; background: #c8f53c; opacity: 0.5; animation: indicatorPulse 15s infinite 5s;"></div>
-      <div style="width: 10px; height: 10px; border-radius: 50%; background: #c8f53c; opacity: 0.5; animation: indicatorPulse 15s infinite 10s;"></div>
+    <div style="position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.6rem; z-index: 20;">
+      <div style="width: 8px; height: 8px; border-radius: 50%; background: #c8f53c; opacity: 0.5; animation: indicatorPulse 15s infinite;"></div>
+      <div style="width: 8px; height: 8px; border-radius: 50%; background: #c8f53c; opacity: 0.5; animation: indicatorPulse 15s infinite 5s;"></div>
+      <div style="width: 8px; height: 8px; border-radius: 50%; background: #c8f53c; opacity: 0.5; animation: indicatorPulse 15s infinite 10s;"></div>
     </div>
 
     <style>
@@ -530,26 +556,26 @@
       <div class="steps-container">
         <div class="step-item">
           <div class="step-number">1</div>
-          <div style="font-size: 1.7rem; margin-bottom: 0.3rem;">🚀</div>
-          <h3 style="margin-bottom: 0.25rem; font-size: 1.6rem;">Create a Room</h3>
-          <p style="color: #6b6b80;">One click, and your room is alive.</p>
+          <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">🚀</div>
+          <h3 style="margin-bottom: 0.25rem; font-size: 1.4rem;">Create a Room</h3>
+          <p style="color: #6b6b80; font-size: 0.95rem;">One click, and your room is alive.</p>
         </div>
         <div class="step-item">
           <div class="step-number">2</div>
-          <div style="font-size: 1.7rem; margin-bottom: 0.3rem;">🔗</div>
-          <h3 style="margin-bottom: 0.25rem; font-size: 1.6rem;">Share the Code</h3>
-          <p style="color: #6b6b80;">Send the 6‑digit code to your crew.</p>
+          <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">🔗</div>
+          <h3 style="margin-bottom: 0.25rem; font-size: 1.4rem;">Share the Code</h3>
+          <p style="color: #6b6b80; font-size: 0.95rem;">Send the 6‑digit code to your crew.</p>
         </div>
         <div class="step-item">
           <div class="step-number">3</div>
-          <div style="font-size: 1.7rem; margin-bottom: 0.3rem;">🎧</div>
-          <h3 style="margin-bottom: 0.25rem; font-size: 1.6rem;">Enjoy Sync</h3>
-          <p style="color: #6b6b80;">Press play and feel the unity.</p>
+          <div style="font-size: 1.5rem; margin-bottom: 0.3rem;">🎧</div>
+          <h3 style="margin-bottom: 0.25rem; font-size: 1.4rem;">Enjoy Sync</h3>
+          <p style="color: #6b6b80; font-size: 0.95rem;">Press play and feel the unity.</p>
         </div>
       </div>
       
       <!-- Download badge between sections -->
-      <div style="display: flex; justify-content: center; margin-top: 2.5rem;">
+      <div style="display: flex; justify-content: center; margin-top: 2rem;">
         <div class="download-bar">
           <span class="download-text">⬇️ ready for android</span>
           <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" class="download-link" download>
@@ -563,7 +589,7 @@
   <!-- 4️⃣ SHOWCASE SECTION WITH ACTUAL PREVIEW IMAGE -->
   <section>
     <div class="container">
-      <h2 style="text-align: center; margin-bottom: 2rem;">sleek interface</h2>
+      <h2 style="text-align: center; margin-bottom: 1.5rem;">sleek interface</h2>
       <div class="showcase-card glow-pulse">
         <img 
           src="https://raw.githubusercontent.com/SyedMdAbuHaider/jamsync_web_advanced/refs/heads/main/ss1.png" 
@@ -577,9 +603,9 @@
         </p>
         
         <!-- small download link under showcase -->
-        <div style="margin-top: 1.8rem;">
+        <div style="margin-top: 1.5rem;">
           <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" 
-             style="color: #c8f53c; text-decoration: none; border-bottom: 1px dashed #c8f53c; padding-bottom: 2px;"
+             style="color: #c8f53c; text-decoration: none; border-bottom: 1px dashed #c8f53c; padding-bottom: 2px; font-size: 0.95rem;"
              download>direct APK download</a>
         </div>
       </div>
@@ -590,14 +616,14 @@
   <section class="cta-section">
     <div class="container">
       <h2 class="cta-title">Ready to Jam?</h2>
-      <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
         <a href="#" class="btn btn-cta">Start Listening Now</a>
         <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" 
            class="btn btn-outline" 
-           style="padding: 1.2rem 2.5rem; font-size: 1.3rem;"
+           style="padding: 1rem 2.2rem; font-size: 1.2rem;"
            download>📱 Get the App</a>
       </div>
-      <p style="margin-top: 2rem; color: #6b6b80;">free while in beta · no login required · android 10+</p>
+      <p style="margin-top: 1.5rem; color: #6b6b80; font-size: 0.9rem;">free while in beta · no login required · android 10+</p>
     </div>
   </section>
 
@@ -606,7 +632,7 @@
     <div class="container footer-inner">
       <span>© 2026 JamSync</span>
       <span>Built with Socket.IO & Express</span>
-      <span style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+      <span style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; font-size: 0.85rem;">
         <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" 
            style="color: #6b6b80; text-decoration: none; border-bottom: 1px dotted #c8f53c;"
            download>download apk</a>
@@ -615,8 +641,5 @@
       </span>
     </div>
   </footer>
-
-  <!-- extra glow line at bottom (optional) -->
-  <div style="height: 1px; background: radial-gradient(circle, #c8f53c 0%, transparent 90%); width: 100%; opacity: 0.2;"></div>
 </body>
 </html>
