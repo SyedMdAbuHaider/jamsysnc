@@ -218,6 +218,75 @@
       box-shadow: 0 0 20px #c8f53c;
     }
 
+    /* Advertisement Gallery */
+    .gallery-section {
+      background: linear-gradient(180deg, #0c0c14 0%, #0a0a0f 100%);
+      border-top: 1px solid rgba(200, 245, 60, 0.1);
+      border-bottom: 1px solid rgba(200, 245, 60, 0.1);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      background: #111118;
+      border-radius: 32px;
+      padding: 1.5rem;
+      border: 1px solid rgba(200, 245, 60, 0.15);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.8);
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: #c8f53c;
+      box-shadow: 0 30px 40px -15px rgba(200, 245, 60, 0.25);
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      display: block;
+      border: 2px solid rgba(200, 245, 60, 0.1);
+      transition: all 0.3s;
+      background: #1a1a24;
+    }
+
+    .gallery-item:hover .gallery-image {
+      border-color: #c8f53c;
+      box-shadow: 0 0 30px rgba(200, 245, 60, 0.3);
+    }
+
+    .gallery-caption {
+      margin-top: 1.2rem;
+      color: #c8f53c;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+    }
+
+    .caption-dot {
+      width: 6px;
+      height: 6px;
+      background: #c8f53c;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 10px #c8f53c;
+    }
+
     /* showcase */
     .showcase-card {
       background: #111118;
@@ -345,12 +414,22 @@
     }
 
     /* responsive */
+    @media (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 600px) {
       section { padding: 3rem 0; }
       .btn-group { justify-content: center; }
       h1 { text-align: center; }
       .subheading { text-align: center; margin-left: auto; margin-right: auto; }
       .download-bar { border-radius: 40px; padding: 1.2rem; }
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -413,6 +492,64 @@
           <div class="feature-icon">✨</div>
           <div class="feature-title">Modern Minimal UI</div>
           <div class="feature-desc">Clean, dark, and focused. No distractions, only the music and your friends.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVERTISEMENT GALLERY SECTION - 3 beautiful images -->
+  <section class="gallery-section">
+    <div class="container">
+      <h2 style="text-align: center;">moments captured</h2>
+      <p style="text-align: center; color: #6b6b80; margin-bottom: 2rem;">experience the vibe through the lens</p>
+      
+      <div class="gallery-grid">
+        <!-- adv2.png -->
+        <div class="gallery-item">
+          <img 
+            src="adv2.png" 
+            alt="JamSync advertisement 2 - music sync in action"
+            class="gallery-image"
+            loading="lazy"
+            onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22400%22%20viewBox%3D%220%200%20600%20400%22%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22%23111118%22%2F%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22200%22%20r%3D%2260%22%20fill%3D%22%23c8f53c%22%20opacity%3D%220.2%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22320%22%20font-family%3D%22system-ui%22%20font-size%3D%2220%22%20fill%3D%22%236b6b80%22%3Eadv2.png%3C%2Ftext%3E%3C%2Fsvg%3E';"
+          >
+          <div class="gallery-caption">
+            <span class="caption-dot"></span>
+            <span>sync visualization</span>
+            <span class="caption-dot"></span>
+          </div>
+        </div>
+
+        <!-- adv.png -->
+        <div class="gallery-item">
+          <img 
+            src="adv.png" 
+            alt="JamSync advertisement - group listening"
+            class="gallery-image"
+            loading="lazy"
+            onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22400%22%20viewBox%3D%220%200%20600%20400%22%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22%23111118%22%2F%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22200%22%20r%3D%2260%22%20fill%3D%22%23c8f53c%22%20opacity%3D%220.2%22%2F%3E%3Ctext%20x%3D%22220%22%20y%3D%22320%22%20font-family%3D%22system-ui%22%20font-size%3D%2220%22%20fill%3D%22%236b6b80%22%3Eadv.png%3C%2Ftext%3E%3C%2Fsvg%3E';"
+          >
+          <div class="gallery-caption">
+            <span class="caption-dot"></span>
+            <span>together mode</span>
+            <span class="caption-dot"></span>
+          </div>
+        </div>
+
+        <!-- adv1.png -->
+        <div class="gallery-item">
+          <img 
+            src="adv1.png" 
+            alt="JamSync advertisement 1 - interface preview"
+            class="gallery-image"
+            loading="lazy"
+            onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22600%22%20height%3D%22400%22%20viewBox%3D%220%200%20600%20400%22%3E%3Crect%20width%3D%22600%22%20height%3D%22400%22%20fill%3D%22%23111118%22%2F%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22200%22%20r%3D%2260%22%20fill%3D%22%23c8f53c%22%20opacity%3D%220.2%22%2F%3E%3Ctext%20x%3D%22220%22%20y%3D%22320%22%20font-family%3D%22system-ui%22%20font-size%3D%2220%22%20fill%3D%22%236b6b80%22%3Eadv1.png%3C%2Ftext%3E%3C%2Fsvg%3E';"
+          >
+          <div class="gallery-caption">
+            <span class="caption-dot"></span>
+            <span>dark interface</span>
+            <span class="caption-dot"></span>
+          </div>
         </div>
       </div>
     </div>
