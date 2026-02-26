@@ -101,6 +101,22 @@
       transform: translateY(-3px);
     }
 
+    .btn-download {
+      background: transparent;
+      border: 1px solid #c8f53c;
+      color: #ffffff;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-download:hover {
+      background: rgba(200, 245, 60, 0.1);
+      border-color: #c8f53c;
+      box-shadow: 0 0 20px rgba(200, 245, 60, 0.3);
+      transform: translateY(-3px);
+    }
+
     /* ----- cards & glass effect ----- */
     .glass-card {
       background: #111118;
@@ -240,6 +256,46 @@
       font-size: 0.9rem;
     }
 
+    /* download bar */
+    .download-bar {
+      background: #111118;
+      border-radius: 100px;
+      padding: 0.8rem 1.5rem 0.8rem 2rem;
+      border: 1px solid rgba(200, 245, 60, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .download-text {
+      color: #c8f53c;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+
+    .download-link {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+      background: rgba(200, 245, 60, 0.1);
+      border: 1px solid #c8f53c;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .download-link:hover {
+      background: #c8f53c;
+      color: #0a0a0f;
+      box-shadow: 0 0 20px #c8f53c;
+    }
+
     /* CTA */
     .cta-section {
       text-align: center;
@@ -294,6 +350,7 @@
       .btn-group { justify-content: center; }
       h1 { text-align: center; }
       .subheading { text-align: center; margin-left: auto; margin-right: auto; }
+      .download-bar { border-radius: 40px; padding: 1.2rem; }
     }
   </style>
 </head>
@@ -311,6 +368,16 @@
         <div class="btn-group">
           <a href="#" class="btn btn-primary">✨ Create Room</a>
           <a href="#" class="btn btn-outline">🔊 Join Room</a>
+        </div>
+        
+        <!-- Download APK button right in hero -->
+        <div style="margin-top: 2.5rem;">
+          <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" 
+             class="btn btn-download"
+             download>
+            <span>📱</span> Download Android App
+          </a>
+          <span style="display: block; color: #6b6b80; font-size: 0.9rem; margin-top: 0.8rem;">version 2.1.0 · 18 MB</span>
         </div>
       </div>
     </div>
@@ -375,6 +442,16 @@
           <p style="color: #6b6b80;">Press play and feel the unity.</p>
         </div>
       </div>
+      
+      <!-- Download badge between sections -->
+      <div style="display: flex; justify-content: center; margin-top: 2.5rem;">
+        <div class="download-bar">
+          <span class="download-text">⬇️ ready for android</span>
+          <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" class="download-link" download>
+            <span>📲</span> JamSync.apk
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -393,6 +470,13 @@
         <p class="image-credit">
           <span style="color: #c8f53c;">⬤</span> live now · waveform preview · member avatars
         </p>
+        
+        <!-- small download link under showcase -->
+        <div style="margin-top: 1.8rem;">
+          <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" 
+             style="color: #c8f53c; text-decoration: none; border-bottom: 1px dashed #c8f53c; padding-bottom: 2px;"
+             download>direct APK download</a>
+        </div>
       </div>
     </div>
   </section>
@@ -401,8 +485,14 @@
   <section class="cta-section">
     <div class="container">
       <h2 class="cta-title">Ready to Jam?</h2>
-      <a href="#" class="btn btn-cta">Start Listening Now</a>
-      <p style="margin-top: 2rem; color: #6b6b80;">free while in beta · no login required</p>
+      <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+        <a href="#" class="btn btn-cta">Start Listening Now</a>
+        <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" 
+           class="btn btn-outline" 
+           style="padding: 1.2rem 2.5rem; font-size: 1.3rem;"
+           download>📱 Get the App</a>
+      </div>
+      <p style="margin-top: 2rem; color: #6b6b80;">free while in beta · no login required · android 10+</p>
     </div>
   </section>
 
@@ -411,7 +501,13 @@
     <div class="container footer-inner">
       <span>© 2026 JamSync</span>
       <span>Built with Socket.IO & Express</span>
-      <span style="font-size: 0.85rem; color: #4a4a5a;">synchronized · minimal · limitless</span>
+      <span style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+        <a href="https://github.com/SyedMdAbuHaider/jamsysnc/blob/main/JamSync.apk" 
+           style="color: #6b6b80; text-decoration: none; border-bottom: 1px dotted #c8f53c;"
+           download>download apk</a>
+        <span style="color: #3a3a4a;">|</span>
+        <span style="color: #4a4a5a;">synchronized · minimal · limitless</span>
+      </span>
     </div>
   </footer>
 
