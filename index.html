@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JamSync · listen together</title>
+  <style>
+    /* ----- reset & base ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0a0a0f;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      color: #ffffff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ----- containers & sections ----- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    /* ----- typography ----- */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 8vw, 4.5rem);
+      line-height: 1.1;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .subheading {
+      font-size: 1.25rem;
+      color: #b0b0c0;
+      max-width: 600px;
+      margin: 1.5rem 0 2rem;
+    }
+
+    /* ----- buttons ----- */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 550;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+      background: transparent;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+
+    .btn-primary {
+      background: #c8f53c;
+      color: #0a0a0f;
+      border-color: #c8f53c;
+    }
+
+    .btn-primary:hover {
+      background: #d8ff5c;
+      border-color: #d8ff5c;
+      box-shadow: 0 8px 20px rgba(200, 245, 60, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(200, 245, 60, 0.5);
+      color: #ffffff;
+    }
+
+    .btn-outline:hover {
+      border-color: #c8f53c;
+      background: rgba(200, 245, 60, 0.05);
+      box-shadow: 0 0 16px rgba(200, 245, 60, 0.3);
+      transform: translateY(-3px);
+    }
+
+    /* ----- cards & glass effect ----- */
+    .glass-card {
+      background: #111118;
+      border-radius: 32px;
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(200, 245, 60, 0.1);
+      box-shadow: 0 20px 35px -8px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.02) inset;
+      transition: all 0.3s;
+      backdrop-filter: blur(2px);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(200, 245, 60, 0.3);
+      box-shadow: 0 25px 40px -12px rgba(200, 245, 60, 0.15), 0 0 0 1px rgba(200, 245, 60, 0.2) inset;
+      transform: scale(1.02);
+    }
+
+    /* ----- hero animation ----- */
+    .hero {
+      position: relative;
+      background: radial-gradient(circle at 30% 40%, rgba(200, 245, 60, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(200, 245, 60, 0.05) 0%, transparent 50%),
+                  #0a0a0f;
+      border-bottom: 1px solid rgba(200, 245, 60, 0.1);
+    }
+
+    /* glow animation */
+    .glow-pulse {
+      animation: softGlow 4s infinite alternate ease-in-out;
+    }
+
+    @keyframes softGlow {
+      0% { box-shadow: 0 0 5px rgba(200, 245, 60, 0.1), 0 0 20px rgba(200, 245, 60, 0.05); }
+      100% { box-shadow: 0 0 15px rgba(200, 245, 60, 0.2), 0 0 40px rgba(200, 245, 60, 0.1); }
+    }
+
+    /* feature grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 8px #c8f53c66);
+    }
+
+    .feature-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: #ffffff;
+    }
+
+    .feature-desc {
+      color: #6b6b80;
+      font-size: 1rem;
+    }
+
+    /* steps */
+    .steps-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .step-item {
+      flex: 1 1 200px;
+      text-align: center;
+      background: #111118;
+      border-radius: 40px;
+      padding: 2.2rem 1.2rem;
+      border: 1px solid rgba(200, 245, 60, 0.08);
+      transition: all 0.2s;
+    }
+
+    .step-item:hover {
+      border-color: #c8f53c;
+      box-shadow: 0 0 25px rgba(200, 245, 60, 0.2);
+    }
+
+    .step-number {
+      background: #c8f53c;
+      color: #0a0a0f;
+      width: 48px;
+      height: 48px;
+      font-size: 1.6rem;
+      font-weight: bold;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+      box-shadow: 0 0 20px #c8f53c;
+    }
+
+    /* showcase */
+    .showcase-card {
+      background: #111118;
+      border-radius: 40px;
+      padding: 3rem 2rem;
+      border: 1px solid rgba(200, 245, 60, 0.15);
+      box-shadow: 0 30px 40px -20px black;
+      transition: all 0.4s;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .showcase-card:hover {
+      border-color: #c8f53c;
+      box-shadow: 0 0 40px rgba(200, 245, 60, 0.25);
+    }
+
+    .preview-image {
+      width: 100%;
+      border-radius: 24px;
+      border: 2px solid rgba(200, 245, 60, 0.2);
+      transition: all 0.3s;
+      display: block;
+      box-shadow: 0 20px 30px -12px #000000cc;
+    }
+
+    .preview-image:hover {
+      border-color: #c8f53c;
+      box-shadow: 0 0 30px rgba(200, 245, 60, 0.3);
+    }
+
+    .image-credit {
+      color: #6b6b80;
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(200, 245, 60, 0.1) 0%, transparent 70%);
+    }
+
+    .cta-title {
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      margin-bottom: 2rem;
+    }
+
+    .btn-cta {
+      background: #c8f53c;
+      color: #0a0a0f;
+      padding: 1.2rem 3.5rem;
+      font-size: 1.4rem;
+      border-radius: 80px;
+      font-weight: 600;
+      border: none;
+      box-shadow: 0 10px 25px rgba(200, 245, 60, 0.3);
+    }
+
+    .btn-cta:hover {
+      background: #dcff66;
+      box-shadow: 0 15px 35px rgba(200, 245, 60, 0.5);
+      transform: translateY(-4px);
+    }
+
+    /* footer */
+    footer {
+      border-top: 1px solid rgba(200, 245, 60, 0.08);
+      padding: 2.5rem 0;
+      color: #6b6b80;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-inner span:last-child {
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* responsive */
+    @media (max-width: 600px) {
+      section { padding: 3rem 0; }
+      .btn-group { justify-content: center; }
+      h1 { text-align: center; }
+      .subheading { text-align: center; margin-left: auto; margin-right: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1️⃣ HERO SECTION -->
+  <section class="hero">
+    <div class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
+      <div style="max-width: 800px;">
+        <h1>Listen Together.<br>Perfectly in Sync.</h1>
+        <p class="subheading">
+          JamSync is the real‑time music player that connects people through sound. 
+          Create a room, invite friends, and let the tracks flow in perfect harmony.
+        </p>
+        <div class="btn-group">
+          <a href="#" class="btn btn-primary">✨ Create Room</a>
+          <a href="#" class="btn btn-outline">🔊 Join Room</a>
+        </div>
+      </div>
+    </div>
+    <!-- subtle glowing line under hero (simulates glow edge) -->
+    <div style="height: 2px; background: radial-gradient(circle, #c8f53c40 0%, transparent 80%); width: 80%; margin: 1rem auto 0;"></div>
+  </section>
+
+  <!-- 2️⃣ FEATURES SECTION -->
+  <section>
+    <div class="container">
+      <h2 style="text-align: center;">built for the vibe</h2>
+      <div class="features-grid">
+        <!-- feature 1 -->
+        <div class="glass-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-title">Real-Time Sync</div>
+          <div class="feature-desc">Zero‑lag playback across all devices – everybody hears the same beat at the same moment.</div>
+        </div>
+        <!-- feature 2 -->
+        <div class="glass-card">
+          <div class="feature-icon">🚪</div>
+          <div class="feature-title">Multi‑Room Support</div>
+          <div class="feature-desc">Jam in different rooms simultaneously. Each room has its own queue and members.</div>
+        </div>
+        <!-- feature 3 -->
+        <div class="glass-card">
+          <div class="feature-icon">🎚️</div>
+          <div class="feature-title">Host‑Controlled Playback</div>
+          <div class="feature-desc">Only the host adds tracks, skips, and controls the flow – no chaos, just music.</div>
+        </div>
+        <!-- feature 4 -->
+        <div class="glass-card">
+          <div class="feature-icon">✨</div>
+          <div class="feature-title">Modern Minimal UI</div>
+          <div class="feature-desc">Clean, dark, and focused. No distractions, only the music and your friends.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3️⃣ HOW IT WORKS -->
+  <section style="background: #0c0c14; border-top: 1px solid #1e1e28; border-bottom: 1px solid #1e1e28;">
+    <div class="container">
+      <h2 style="text-align: center;">three steps to sync</h2>
+      <div class="steps-container">
+        <div class="step-item">
+          <div class="step-number">1</div>
+          <div style="font-size: 1.7rem; margin-bottom: 0.3rem;">🚀</div>
+          <h3 style="margin-bottom: 0.25rem; font-size: 1.6rem;">Create a Room</h3>
+          <p style="color: #6b6b80;">One click, and your room is alive.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">2</div>
+          <div style="font-size: 1.7rem; margin-bottom: 0.3rem;">🔗</div>
+          <h3 style="margin-bottom: 0.25rem; font-size: 1.6rem;">Share the Code</h3>
+          <p style="color: #6b6b80;">Send the 6‑digit code to your crew.</p>
+        </div>
+        <div class="step-item">
+          <div class="step-number">3</div>
+          <div style="font-size: 1.7rem; margin-bottom: 0.3rem;">🎧</div>
+          <h3 style="margin-bottom: 0.25rem; font-size: 1.6rem;">Enjoy Sync</h3>
+          <p style="color: #6b6b80;">Press play and feel the unity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4️⃣ SHOWCASE SECTION WITH ACTUAL PREVIEW IMAGE -->
+  <section>
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 2rem;">sleek interface</h2>
+      <div class="showcase-card glow-pulse">
+        <img 
+          src="https://raw.githubusercontent.com/SyedMdAbuHaider/jamsync_web_advanced/refs/heads/main/ss1.png" 
+          alt="JamSync App Preview - synchronized music player interface"
+          class="preview-image"
+          loading="lazy"
+          onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22400%22%20viewBox%3D%220%200%20800%20400%22%3E%3Crect%20width%3D%22800%22%20height%3D%22400%22%20fill%3D%22%23111118%22%2F%3E%3Ctext%20x%3D%22200%22%20y%3D%22200%22%20font-family%3D%22system-ui%22%20font-size%3D%2224%22%20fill%3D%22%236b6b80%22%3E%F0%9F%93%B1%20Preview%20image%20loading...%3C%2Ftext%3E%3C%2Fsvg%3E';"
+        >
+        <p class="image-credit">
+          <span style="color: #c8f53c;">⬤</span> live now · waveform preview · member avatars
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5️⃣ CALL TO ACTION -->
+  <section class="cta-section">
+    <div class="container">
+      <h2 class="cta-title">Ready to Jam?</h2>
+      <a href="#" class="btn btn-cta">Start Listening Now</a>
+      <p style="margin-top: 2rem; color: #6b6b80;">free while in beta · no login required</p>
+    </div>
+  </section>
+
+  <!-- 6️⃣ FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2026 JamSync</span>
+      <span>Built with Socket.IO & Express</span>
+      <span style="font-size: 0.85rem; color: #4a4a5a;">synchronized · minimal · limitless</span>
+    </div>
+  </footer>
+
+  <!-- extra glow line at bottom (optional) -->
+  <div style="height: 1px; background: radial-gradient(circle, #c8f53c 0%, transparent 90%); width: 100%; opacity: 0.2;"></div>
+</body>
+</html>
